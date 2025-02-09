@@ -12,7 +12,7 @@ using Songify.Data;
 namespace Songify.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250208145254_Initial")]
+    [Migration("20250209132920_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -50,18 +50,6 @@ namespace Songify.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "f2020d38-43b5-4190-85da-10686db3667a",
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Id = "402dd83a-0c82-4566-9277-a0f601467d14",
-                            Name = "User"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -151,13 +139,6 @@ namespace Songify.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "9833ef25-590f-41d1-b8c1-f5570c7b0a1d",
-                            RoleId = "f2020d38-43b5-4190-85da-10686db3667a"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -225,7 +206,7 @@ namespace Songify.Migrations
                     b.ToTable("Bands");
                 });
 
-            modelBuilder.Entity("Songify.Entities.Genre", b =>
+            modelBuilder.Entity("Songify.Entities.LikedSong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,12 +214,22 @@ namespace Songify.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Name")
+                    b.Property<int>("SongId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SongifyUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.HasIndex("SongId");
+
+                    b.HasIndex("SongifyUserId");
+
+                    b.ToTable("LikedSongs");
                 });
 
             modelBuilder.Entity("Songify.Entities.Song", b =>
@@ -258,7 +249,7 @@ namespace Songify.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("GenreId")
+                    b.Property<int?>("LikedSongId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -271,7 +262,7 @@ namespace Songify.Migrations
 
                     b.HasIndex("BandId");
 
-                    b.HasIndex("GenreId");
+                    b.HasIndex("LikedSongId");
 
                     b.ToTable("Songs");
                 });
@@ -294,6 +285,9 @@ namespace Songify.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("LikedSongId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -330,6 +324,8 @@ namespace Songify.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LikedSongId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -339,22 +335,6 @@ namespace Songify.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "9833ef25-590f-41d1-b8c1-f5570c7b0a1d",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "361bcc76-aa97-474c-a61d-386483e85ef1",
-                            Email = "admin@songify.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEG1HyIAC49+By12Yw6sjjzSA1BsFpE+aofpxPAQh7+K/jzqV8aZrZFTEkWxQsfde7Q==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5bfde400-3519-4c12-9744-3420c5d33d7c",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@songify.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -408,6 +388,23 @@ namespace Songify.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Songify.Entities.LikedSong", b =>
+                {
+                    b.HasOne("Songify.Entities.Song", "Song")
+                        .WithMany()
+                        .HasForeignKey("SongId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Songify.Entities.SongifyUser", "SongifyUser")
+                        .WithMany()
+                        .HasForeignKey("SongifyUserId");
+
+                    b.Navigation("Song");
+
+                    b.Navigation("SongifyUser");
+                });
+
             modelBuilder.Entity("Songify.Entities.Song", b =>
                 {
                     b.HasOne("Songify.Entities.Album", "Album")
@@ -422,17 +419,20 @@ namespace Songify.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Songify.Entities.Genre", "Genre")
+                    b.HasOne("Songify.Entities.LikedSong", null)
                         .WithMany("Songs")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LikedSongId");
 
                     b.Navigation("Album");
 
                     b.Navigation("Band");
+                });
 
-                    b.Navigation("Genre");
+            modelBuilder.Entity("Songify.Entities.SongifyUser", b =>
+                {
+                    b.HasOne("Songify.Entities.LikedSong", null)
+                        .WithMany("Users")
+                        .HasForeignKey("LikedSongId");
                 });
 
             modelBuilder.Entity("Songify.Entities.Album", b =>
@@ -445,9 +445,11 @@ namespace Songify.Migrations
                     b.Navigation("Songs");
                 });
 
-            modelBuilder.Entity("Songify.Entities.Genre", b =>
+            modelBuilder.Entity("Songify.Entities.LikedSong", b =>
                 {
                     b.Navigation("Songs");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
