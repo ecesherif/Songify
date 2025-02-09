@@ -12,7 +12,7 @@ using Songify.Data;
 namespace Songify.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250209132920_Initial")]
+    [Migration("20250209144511_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -208,26 +208,18 @@ namespace Songify.Migrations
 
             modelBuilder.Entity("Songify.Entities.LikedSong", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SongId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SongifyUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "SongId");
 
                     b.HasIndex("SongId");
-
-                    b.HasIndex("SongifyUserId");
 
                     b.ToTable("LikedSongs");
                 });
@@ -249,9 +241,6 @@ namespace Songify.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LikedSongId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -261,8 +250,6 @@ namespace Songify.Migrations
                     b.HasIndex("AlbumId");
 
                     b.HasIndex("BandId");
-
-                    b.HasIndex("LikedSongId");
 
                     b.ToTable("Songs");
                 });
@@ -285,9 +272,6 @@ namespace Songify.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("LikedSongId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -323,8 +307,6 @@ namespace Songify.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LikedSongId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -391,14 +373,16 @@ namespace Songify.Migrations
             modelBuilder.Entity("Songify.Entities.LikedSong", b =>
                 {
                     b.HasOne("Songify.Entities.Song", "Song")
-                        .WithMany()
+                        .WithMany("LikedSongs")
                         .HasForeignKey("SongId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Songify.Entities.SongifyUser", "SongifyUser")
                         .WithMany()
-                        .HasForeignKey("SongifyUserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Song");
 
@@ -419,20 +403,9 @@ namespace Songify.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Songify.Entities.LikedSong", null)
-                        .WithMany("Songs")
-                        .HasForeignKey("LikedSongId");
-
                     b.Navigation("Album");
 
                     b.Navigation("Band");
-                });
-
-            modelBuilder.Entity("Songify.Entities.SongifyUser", b =>
-                {
-                    b.HasOne("Songify.Entities.LikedSong", null)
-                        .WithMany("Users")
-                        .HasForeignKey("LikedSongId");
                 });
 
             modelBuilder.Entity("Songify.Entities.Album", b =>
@@ -445,11 +418,9 @@ namespace Songify.Migrations
                     b.Navigation("Songs");
                 });
 
-            modelBuilder.Entity("Songify.Entities.LikedSong", b =>
+            modelBuilder.Entity("Songify.Entities.Song", b =>
                 {
-                    b.Navigation("Songs");
-
-                    b.Navigation("Users");
+                    b.Navigation("LikedSongs");
                 });
 #pragma warning restore 612, 618
         }

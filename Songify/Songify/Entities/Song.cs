@@ -9,5 +9,6 @@
         public Album Album { get; set; }
         public int BandId { get; set; }
         public Band Band { get; set; }
+        public ICollection<LikedSong> LikedSongs { get; set; } = new List<LikedSong>();
     }
 }
