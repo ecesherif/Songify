@@ -1,0 +1,43 @@
+﻿@using Songify.Models.SongModels
+@model IEnumerable<SongAllViewModel>
+@{
+    ViewData["Title"] = "All Songs";
+}
+<h1>All Songs</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AlbumId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandId)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>@song.Title</td>
+                <td>@song.Duration</td>
+                <td>@song.AlbumId</td>
+                <td>@song.BandId</td>
+                <td>
+                    <a href="/Songs/Edit/@song.Id">Edit</a> |
+                    <a href="/Songs/Delete/@song.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

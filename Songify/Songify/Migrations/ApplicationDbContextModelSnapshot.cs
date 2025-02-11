@@ -167,8 +167,8 @@ namespace Songify.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -191,8 +191,8 @@ namespace Songify.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FormDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FormYear")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

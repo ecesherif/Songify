@@ -42,3 +42,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+app.UseRouting();
+app.UseAuthorization();
