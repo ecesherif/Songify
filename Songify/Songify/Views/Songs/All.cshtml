@@ -4,7 +4,7 @@
     ViewData["Title"] = "All Songs";
 }
 <h1>All Songs</h1>
-
+<a asp-action="Create" class="btn btn-primary mb-2">Add Song</a>
 <table class="table">
     <thead>
         <tr>
@@ -34,8 +34,8 @@
                 <td>@song.AlbumId</td>
                 <td>@song.BandId</td>
                 <td>
-                    <a href="/Songs/Edit/@song.Id">Edit</a> |
-                    <a href="/Songs/Delete/@song.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@song.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@song.Id">Delete</a>
                 </td>
             </tr>
         }

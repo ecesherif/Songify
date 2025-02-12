@@ -1,40 +1,37 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Songify.Data;
 using Songify.Entities;
-using Songify.Models;
-using Songify.Models.BandModels;
+using Songify.Models.AlbumModels;
 using System.Security.Claims;
 
 namespace Songify.Controllers
 {
-    public class BandsController : Controller
+    public class AlbumsController : Controller
     {
         private readonly ApplicationDbContext context;
 
-        public BandsController(ApplicationDbContext context)
+        public AlbumsController(ApplicationDbContext context)
         {
             this.context = context;
         }
 
         public IActionResult All(string searchString)
         {
-            List<BandAllViewModel> bands = context.Bands
-                .Select(bandFromDb => new BandAllViewModel
+            List<AlbumAllViewModel> albums = context.Albums
+                .Select(albumFromDb => new AlbumAllViewModel
                 {
-                    Id = bandFromDb.Id.ToString(),
-                    Name = bandFromDb.Name,
-                    FormYear = bandFromDb.FormYear.ToString(),
-                    Country = bandFromDb.Country
+                    Id = albumFromDb.Id.ToString(),
+                    Title = albumFromDb.Title,
+                    ReleaseYear = albumFromDb.ReleaseYear.ToString()
                 })
                 .ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                bands = bands.Where(s => s.Name.Contains(searchString)).ToList();
+                albums = albums.Where(s => s.Title.Contains(searchString)).ToList();
             }
 
-            return this.View(bands);
+            return this.View(albums);
         }
 
         public IActionResult Create()
@@ -44,19 +41,18 @@ namespace Songify.Controllers
 
         [HttpPost]
 
-        public IActionResult Create(BandCreateBindingModel bindingModel)
+        public IActionResult Create(AlbumCreateBindingModel bindingModel)
         {
             if (this.ModelState.IsValid)
             {
                 string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                Band bandFromDb = new Band
+                Album albumFromDb = new Album
                 {
-                    Name = bindingModel.Name,
-                    FormYear = bindingModel.FormYear,
-                    Country = bindingModel.Country
+                    Title = bindingModel.Title,
+                    ReleaseYear = bindingModel.ReleaseYear
                 };
 
-                context.Bands.Add(bandFromDb);
+                context.Albums.Add(albumFromDb);
                 context.SaveChanges();
 
                 return this.RedirectToAction("All");
@@ -67,37 +63,35 @@ namespace Songify.Controllers
         [Authorize]
         public IActionResult Edit(int id)
         {
-            var band = context.Bands.Find(id);
-            if (band == null)
+            var album = context.Albums.Find(id);
+            if (album == null)
             {
                 return NotFound();
             }
 
-            var model = new BandEditBindingModel
+            var model = new AlbumEditBindingModel
             {
-                Id = band.Id,
-                Name = band.Name,
-                FormYear = band.FormYear,
-                Country = band.Country
+                Id = album.Id,
+                Title = album.Title,
+                ReleaseYear = album.ReleaseYear
             };
 
             return View(model);
         }
         [Authorize]
         [HttpPost]
-        public IActionResult Edit(BandEditBindingModel model)
+        public IActionResult Edit(AlbumEditBindingModel model)
         {
-            var band = context.Bands.Find(model.Id);
-            if (band == null)
+            var album = context.Albums.Find(model.Id);
+            if (album == null)
             {
                 return NotFound();
             }
 
-            band.Name = model.Name;
-            band.FormYear = model.FormYear;
-            band.Country = model.Country;
-           
-            context.Update(band);
+            album.Title = model.Title;
+            album.ReleaseYear = model.ReleaseYear;
+
+            context.Update(album);
             context.SaveChanges();
 
             return RedirectToAction("All");
@@ -105,18 +99,17 @@ namespace Songify.Controllers
         [Authorize]
         public IActionResult Delete(int id)
         {
-            var band = context.Bands.Find(id);
-            if (band == null)
+            var album = context.Albums.Find(id);
+            if (album == null)
             {
                 return NotFound();
             }
 
-            var model = new BandDeleteViewModel
+            var model = new AlbumDeleteViewModel
             {
-                Id = band.Id,
-                Name = band.Name,
-                FormYear = band.FormYear,
-                Country = band.Country
+                Id = album.Id,
+                Title = album.Title,
+                ReleaseYear = album.ReleaseYear
             };
 
             return View(model);
@@ -125,13 +118,13 @@ namespace Songify.Controllers
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
-            var band = context.Bands.Find(id);
-            if (band == null)
+            var album = context.Albums.Find(id);
+            if (album == null)
             {
                 return NotFound();
             }
 
-            context.Bands.Remove(band);
+            context.Albums.Remove(album);
             context.SaveChanges();
 
             return RedirectToAction("All");

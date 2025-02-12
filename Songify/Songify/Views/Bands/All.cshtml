@@ -4,6 +4,7 @@
     ViewData["Title"] = "All Bands";
 }
 <h1>All Bands</h1>
+<a asp-action="Create" class="btn btn-primary mb-2">Add Band</a>
 <table class="table">
     <thead>
         <tr>
@@ -29,8 +30,8 @@
                 <td>@band.FormYear</td>
                 <td>@band.Country</td>
                 <td>
-                    <a href="/Bands/Edit/@band.Id">Edit</a> |
-                    <a href="/Bands/Delete/@band.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@band.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@band.Id">Delete</a>
                 </td>
             </tr>
         }

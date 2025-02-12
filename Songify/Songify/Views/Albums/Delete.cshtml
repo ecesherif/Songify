@@ -1,0 +1,16 @@
+﻿@using Songify.Models.AlbumModels
+@model AlbumDeleteViewModel
+@{
+    ViewData["Title"] = "Delete Album";
+}
+<h1>Delete Album</h1>
+<div>
+    <h4>@Model.Title</h4>
+    <p>Released in: @Model.ReleaseYear</p>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="All" class="btn btn-secondary">Cancel</a>
+</form>

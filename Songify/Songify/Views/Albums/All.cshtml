@@ -1,0 +1,35 @@
+﻿@using Songify.Models.AlbumModels
+@model IEnumerable<AlbumAllViewModel>
+@{
+    ViewData["Title"] = "All Albums";
+}
+<h1>All Albums</h1>
+<a asp-action="Create" class="btn btn-primary mb-2">Add Album</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseYear)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var album in Model)
+        {
+            <tr>
+                <td>@album.Title</td>
+                <td>@album.ReleaseYear</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@album.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@album.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,52 @@
+﻿@using Songify.Models.SongModels
+@model SongCreateBindingModel
+@{
+    ViewData["Title"] = "Add Song";
+}
+<h1>Add Song</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" placeholder="Title..." />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" placeholder="Duration..." />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlbumId" class="control-label"></label>
+                <select asp-for="AlbumId" asp-items="ViewBag.Albums" class="form-control">
+                    <option value="">-- Select Album --</option>
+                </select>
+                <span asp-validation-for="AlbumId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BandId" class="control-label"></label>
+                <select asp-for="BandId" asp-items="ViewBag.Bands" class="form-control">
+                    <option value="">-- Select Band --</option>
+                </select>
+                <span asp-validation-for="BandId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

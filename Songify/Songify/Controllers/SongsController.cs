@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Songify.Data;
 using Songify.Entities;
@@ -42,6 +43,8 @@ namespace Songify.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Albums = new SelectList(context.Albums, "AlbumId", "AlbumName");
+            ViewBag.Bands = new SelectList(context.Bands, "BandId", "BandName");
             return this.View();
         }
 
@@ -94,6 +97,56 @@ namespace Songify.Controllers
             }
 
             return this.View(likedSongs);
+        }
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var song = context.Songs.Find(id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+
+            var model = new SongEditBindingModel
+            {
+                Id = song.Id,
+                Title = song.Title,
+                Duration = song.Duration,
+                AlbumId = song.AlbumId,
+                BandId = song.BandId
+            };
+
+            ViewBag.Albums = new SelectList(context.Albums, "AlbumId", "AlbumName", song.AlbumId);
+            ViewBag.Bands = new SelectList(context.Bands, "BandId", "BandName", song.BandId);
+
+            return View(model);
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(SongEditBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Albums = new SelectList(context.Albums, "AlbumId", "AlbumName", model.AlbumId);
+                ViewBag.Bands = new SelectList(context.Bands, "BandId", "BandName", model.BandId);
+                return View(model);
+            }
+
+            var song = context.Songs.Find(model.Id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+
+            song.Title = model.Title;
+            song.Duration = model.Duration;
+            song.AlbumId = model.AlbumId;
+            song.BandId = model.BandId;
+
+            context.Update(song);
+            context.SaveChanges();
+
+            return RedirectToAction("All");
         }
         public IActionResult Index()
         {

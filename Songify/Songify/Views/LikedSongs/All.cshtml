@@ -1,0 +1,30 @@
+﻿@using Songify.Models.LikedSongsModels
+@model IEnumerable<LikedSongsAllViewModel>
+@{
+    ViewData["Title"] = "All Liked Songs";
+}
+<h1>All Liked Songs</h1>
+<a asp-action="Add" class="btn btn-primary mb-2">Add Liked Song</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Song Title
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>@song.SongTitle</td>
+                <td>
+                    <a asp-action="Remove" asp-route-id="@song.Id">Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

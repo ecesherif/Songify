@@ -32,8 +32,36 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Albums/All.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxidW1zXEFsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Albums/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxidW1zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Albums/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxidW1zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Albums/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxidW1zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Bands/All.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuZHNcQWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Bands/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuZHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Bands/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuZHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Bands/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuZHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Home/Index.cshtml]
@@ -42,6 +70,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/LikedSongs/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlrZWRTb25nc1xBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/LikedSongs/All.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlrZWRTb25nc1xBbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/LikedSongs/Remove.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlrZWRTb25nc1xSZW1vdmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Shared/Error.cshtml]
@@ -58,6 +98,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Songs/All.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcQWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Songs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/Songs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ece/Desktop/Ит кариера/Модул 12/Songify/Songify/Views/_ViewImports.cshtml]

@@ -1,0 +1,14 @@
+﻿@using Songify.Models.LikedSongsModels
+@model LikedSongRemoveViewModel
+@{
+    ViewData["Title"] = "Remove Liked Song";
+}
+<h1>Remove Liked Song</h1>
+<div>
+    <h4>Are you sure you want to remove "@Model.SongTitle"?</h4>
+</div>
+<form asp-action="RemoveConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Remove</button>
+    <a asp-action="All" class="btn btn-secondary">Cancel</a>
+</form>
