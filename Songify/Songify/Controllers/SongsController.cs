@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Songify.Data;
 using Songify.Entities;
 using Songify.Models;
+using Songify.Models.BandModels;
 using Songify.Models.SongModels;
 using System.Globalization;
 using System.Security.Claims;
@@ -40,36 +41,37 @@ namespace Songify.Controllers
 
             return this.View(songs);
         }
-
+        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewBag.Albums = new SelectList(context.Albums, "AlbumId", "AlbumName");
-            ViewBag.Bands = new SelectList(context.Bands, "BandId", "BandName");
+            PopulateDropdowns(); 
             return this.View();
         }
 
         [HttpPost]
-
+        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(SongCreateBindingModel bindingModel)
         {
-            if (this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                Song songFromDb = new Song
-                {
-                    Title = bindingModel.Title,
-                    Duration = bindingModel.Duration,
-                    AlbumId = bindingModel.AlbumId,
-                    BandId = bindingModel.BandId
-                };
-
-                context.Songs.Add(songFromDb);
-                context.SaveChanges();
-
-                return this.RedirectToAction("All");
+                PopulateDropdowns();
+                return View(bindingModel);
             }
 
-            return this.View();
+            var songFromDb = new Song
+            {
+                Title = bindingModel.Title,
+                Duration = bindingModel.Duration,
+                AlbumId = bindingModel.AlbumId,
+                BandId = bindingModel.BandId
+            };
+
+            context.Songs.Add(songFromDb);
+            context.SaveChanges();
+
+            return RedirectToAction("All");
         }
         [Authorize]
         public IActionResult My(string searchString)
@@ -78,7 +80,7 @@ namespace Songify.Controllers
             var user = this.context.Users.SingleOrDefault(u => u.Id == currentUserId);
             if (user == null)
             {
-                return null;
+                return NotFound();
             }
             List<LikedSongsListingViewModel> likedSongs = this.context.LikedSongs
                 .Where(ls => ls.UserId == user.Id)
@@ -96,9 +98,10 @@ namespace Songify.Controllers
                 likedSongs = likedSongs.Where(ls => ls.SongId.Contains(searchString)).ToList();
             }
 
-            return this.View(likedSongs);
+            return View(likedSongs);
         }
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var song = context.Songs.Find(id);
@@ -116,19 +119,17 @@ namespace Songify.Controllers
                 BandId = song.BandId
             };
 
-            ViewBag.Albums = new SelectList(context.Albums, "AlbumId", "AlbumName", song.AlbumId);
-            ViewBag.Bands = new SelectList(context.Bands, "BandId", "BandName", song.BandId);
-
+            PopulateDropdowns(song.AlbumId, song.BandId);
             return View(model);
         }
         [Authorize]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(SongEditBindingModel model)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Albums = new SelectList(context.Albums, "AlbumId", "AlbumName", model.AlbumId);
-                ViewBag.Bands = new SelectList(context.Bands, "BandId", "BandName", model.BandId);
+                PopulateDropdowns(model.AlbumId, model.BandId); 
                 return View(model);
             }
 
@@ -144,6 +145,48 @@ namespace Songify.Controllers
             song.BandId = model.BandId;
 
             context.Update(song);
+            context.SaveChanges();
+
+            return RedirectToAction("All");
+        }
+        private void PopulateDropdowns(int? selectedAlbumId = null, int? selectedBandId = null)
+        {
+            ViewBag.Albums = new SelectList(context.Albums?.ToList() ?? new List<Album>(), "Id", "Title", selectedAlbumId);
+            ViewBag.Bands = new SelectList(context.Bands?.ToList() ?? new List<Band>(), "Id", "Name", selectedBandId);
+        }
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var song = context.Songs.Find(id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+
+            var model = new SongDeleteViewModel
+            {
+                Id = song.Id,
+                Title = song.Title,
+                Duration = song.Duration,
+                AlbumId = song.AlbumId,
+                BandId = song.BandId
+            };
+
+            return View(model);
+        }
+        [Authorize]
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var song = context.Songs.Find(id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+
+            context.Songs.Remove(song);
             context.SaveChanges();
 
             return RedirectToAction("All");

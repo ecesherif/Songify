@@ -1,10 +1,18 @@
 ﻿@using Songify.Models.SongModels
+@using Microsoft.AspNetCore.Identity
+@using Songify.Entities
+@inject UserManager<SongifyUser> UserManager
+@inject SignInManager<SongifyUser> SignInManager
 @model IEnumerable<SongAllViewModel>
 @{
     ViewData["Title"] = "All Songs";
 }
 <h1>All Songs</h1>
-<a asp-action="Create" class="btn btn-primary mb-2">Add Song</a>
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn btn-primary mb-2">Add Song</a>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -34,6 +42,7 @@
                 <td>@song.AlbumId</td>
                 <td>@song.BandId</td>
                 <td>
+
                     <a asp-action="Edit" asp-route-id="@song.Id">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@song.Id">Delete</a>
                 </td>

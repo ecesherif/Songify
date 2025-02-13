@@ -33,14 +33,14 @@ namespace Songify.Controllers
 
             return this.View(albums);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(AlbumCreateBindingModel bindingModel)
         {
             if (this.ModelState.IsValid)
@@ -61,6 +61,7 @@ namespace Songify.Controllers
             return this.View();
         }
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var album = context.Albums.Find(id);
@@ -80,6 +81,7 @@ namespace Songify.Controllers
         }
         [Authorize]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(AlbumEditBindingModel model)
         {
             var album = context.Albums.Find(model.Id);
@@ -97,6 +99,7 @@ namespace Songify.Controllers
             return RedirectToAction("All");
         }
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var album = context.Albums.Find(id);
@@ -116,6 +119,7 @@ namespace Songify.Controllers
         }
         [Authorize]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
         {
             var album = context.Albums.Find(id);

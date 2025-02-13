@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Songify.Models.AlbumModels;
 using Songify.Models.LikedSongsModels;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Songify.Controllers
 {
@@ -31,21 +33,21 @@ namespace Songify.Controllers
         }
         public IActionResult All(string searchString)
         {
-            List<LikedSongsAllViewModel> likedsongs = context.LikedSongs
+            var userId = userManager.GetUserId(User);
+            List<LikedSongsAllViewModel> likedSongs = context.LikedSongs
+                .Where(ls => ls.UserId == userId)
                 .Select(lsFromDb => new LikedSongsAllViewModel
                 {
                     Id = lsFromDb.Id.ToString(),
                     SongId = lsFromDb.SongId.ToString(),
                     SongTitle = lsFromDb.Song.Title
-
                 })
                 .ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                likedsongs = likedsongs.Where(s => s.UserId.Contains(searchString)).ToList();
+                likedSongs = likedSongs.Where(s => s.SongTitle.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
             }
-
-            return this.View(likedsongs);
+            return View(likedSongs);
         }
         public ActionResult Add()
         {
@@ -61,23 +63,21 @@ namespace Songify.Controllers
             {
                 var likedSong = new LikedSong
                 {
-                    UserId = userManager.GetUserId(User), // Convert UserId to string if needed
+                    UserId = userManager.GetUserId(User),
                     SongId = model.SongId
                 };
 
                 context.LikedSongs.Add(likedSong);
                 context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             ViewBag.SongId = new SelectList(context.Songs, "Id", "Title", model.SongId);
             return View(model);
         }
-
+        [Authorize]
         public IActionResult Remove(int id)
         {
-            var likedSong = context.LikedSongs
-                .Include(ls => ls.Song)
-                .FirstOrDefault(ls => ls.Id == id);
+            var likedSong = context.LikedSongs.Include(ls => ls.Song).FirstOrDefault(ls => ls.Id == id);
             if (likedSong == null)
             {
                 return NotFound();
@@ -89,12 +89,13 @@ namespace Songify.Controllers
             };
             return View(model);
         }
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult RemoveConfirmed(int id)
+        public IActionResult RemoveConfirmed(int songId)
         {
-            var likedSong = context.LikedSongs.Find(id);
-
+            var userId = userManager.GetUserId(User);
+            var likedSong = context.LikedSongs.FirstOrDefault(ls => ls.UserId == userId && ls.SongId == songId);
             if (likedSong == null)
             {
                 return NotFound();
@@ -103,7 +104,7 @@ namespace Songify.Controllers
             context.LikedSongs.Remove(likedSong);
             context.SaveChanges();
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction("All");
         }
     }
 }

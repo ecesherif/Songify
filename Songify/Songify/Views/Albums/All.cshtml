@@ -1,10 +1,18 @@
 ﻿@using Songify.Models.AlbumModels
+@using Microsoft.AspNetCore.Identity
+@using Songify.Entities
+@inject UserManager<SongifyUser> UserManager
+@inject SignInManager<SongifyUser> SignInManager
+
 @model IEnumerable<AlbumAllViewModel>
 @{
     ViewData["Title"] = "All Albums";
 }
 <h1>All Albums</h1>
-<a asp-action="Create" class="btn btn-primary mb-2">Add Album</a>
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn btn-primary mb-2">Add Album</a>
+}
 <table class="table">
     <thead>
         <tr>

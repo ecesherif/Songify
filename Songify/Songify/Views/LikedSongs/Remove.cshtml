@@ -7,8 +7,9 @@
 <div>
     <h4>Are you sure you want to remove "@Model.SongTitle"?</h4>
 </div>
-<form asp-action="RemoveConfirmed" method="post">
-    <input type="hidden" asp-for="Id" />
+<form asp-controller="LikedSongs" asp-action="RemoveConfirmed" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="songId" value="@Model.Id" />
+    <input type="hidden" name="id" value="@Model.SongTitle" />
     <button type="submit" class="btn btn-danger">Remove</button>
-    <a asp-action="All" class="btn btn-secondary">Cancel</a>
 </form>
