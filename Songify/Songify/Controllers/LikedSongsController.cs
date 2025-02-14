@@ -38,7 +38,6 @@ namespace Songify.Controllers
                 .Where(ls => ls.UserId == userId)
                 .Select(lsFromDb => new LikedSongsAllViewModel
                 {
-                    Id = lsFromDb.Id.ToString(),
                     SongId = lsFromDb.SongId.ToString(),
                     SongTitle = lsFromDb.Song.Title
                 })
@@ -59,11 +58,17 @@ namespace Songify.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(LikedSongAddBindingModel model)
         {
-            if (ModelState.IsValid)
+            var userId = userManager.GetUserId(User);
+            bool alreadyLiked = context.LikedSongs.Any(ls => ls.UserId == userId && ls.SongId == model.SongId);
+            if (alreadyLiked)
+            {
+                ModelState.AddModelError("", "You have already liked this song.");
+            }
+            else
             {
                 var likedSong = new LikedSong
                 {
-                    UserId = userManager.GetUserId(User),
+                    UserId = userId,
                     SongId = model.SongId
                 };
 
@@ -75,16 +80,17 @@ namespace Songify.Controllers
             return View(model);
         }
         [Authorize]
-        public IActionResult Remove(int id)
+        public IActionResult Remove(int songId)
         {
-            var likedSong = context.LikedSongs.Include(ls => ls.Song).FirstOrDefault(ls => ls.Id == id);
+            var userId = userManager.GetUserId(User);
+            var likedSong = context.LikedSongs.Include(ls => ls.Song).FirstOrDefault(ls => ls.UserId == userId && ls.SongId == songId);
             if (likedSong == null)
             {
                 return NotFound();
             }
             var model = new LikedSongRemoveViewModel
             {
-                Id = likedSong.Id,
+                SongId = likedSong.Song.Id,
                 SongTitle = likedSong.Song.Title
             };
             return View(model);

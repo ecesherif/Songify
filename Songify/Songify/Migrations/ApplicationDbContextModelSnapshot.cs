@@ -211,9 +211,6 @@ namespace Songify.Migrations
                     b.Property<int>("SongId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId", "SongId");
 
                     b.HasIndex("SongId");

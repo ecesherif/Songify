@@ -11,7 +11,7 @@
         <form asp-action="Add">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SongId" class="control-label"></label>
+                <label asp-for="SongId" class="control-label">Song title</label>
                 <select asp-for="SongId" asp-items="ViewBag.SongId" class="form-control"></select>
                 <span asp-validation-for="SongId" class="text-danger"></span>
             </div>

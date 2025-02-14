@@ -17,35 +17,42 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Duration)
+                Duration in seconds
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AlbumId)
+                Album title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BandId)
+                Band name
             </th>
-            <th>
-                Action
-            </th>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <th>
+                    Action
+                </th>
+            }
         </tr>
     </thead>
     <tbody>
+
         @foreach (var song in Model)
         {
             <tr>
                 <td>@song.Title</td>
                 <td>@song.Duration</td>
-                <td>@song.AlbumId</td>
-                <td>@song.BandId</td>
-                <td>
+                <td>@song.AlbumName</td>
+                <td>@song.BandName</td>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <td>
 
                     <a asp-action="Edit" asp-route-id="@song.Id">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@song.Id">Delete</a>
                 </td>
+                }
             </tr>
         }
     </tbody>

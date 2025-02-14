@@ -17,17 +17,20 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FormYear)
+                Year formed
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                Country
             </th>
-            <th>
-                Action
-            </th>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <th>
+                    Action
+                </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -37,10 +40,13 @@
                 <td>@band.Name</td>
                 <td>@band.FormYear</td>
                 <td>@band.Country</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@band.Id">Edit</a> |
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@band.Id">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@band.Id">Delete</a>
                 </td>
+                }
             </tr>
         }
     </tbody>

@@ -24,14 +24,14 @@ namespace Songify.Controllers
 
         public IActionResult All(string searchString)
         {
-            List<SongAllViewModel> songs = context.Songs
+            List<SongAllViewModel> songs = context.Songs.Include(songFromDb => songFromDb.Album).Include(songFromDb => songFromDb.Band)
                 .Select(songFromDb => new SongAllViewModel
                 {
                     Id = songFromDb.Id.ToString(),
                     Title = songFromDb.Title,
                     Duration = songFromDb.Duration.ToString(),
-                    AlbumId = songFromDb.AlbumId.ToString(),
-                    BandId = songFromDb.BandId.ToString()
+                    AlbumName = songFromDb.Album.Title,
+                    BandName = songFromDb.Band.Name                
                 })
                 .ToList();
             if (!String.IsNullOrEmpty(searchString))
@@ -86,7 +86,6 @@ namespace Songify.Controllers
                 .Where(ls => ls.UserId == user.Id)
                 .Select(ls => new LikedSongsListingViewModel
                 {
-                    Id = ls.Id.ToString(),
                     UserId = ls.UserId,
                     SongId = ls.SongId.ToString(),
 

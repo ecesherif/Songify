@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th>
-                Song Title
+                Song title
             </th>
             <th>
                 Action
@@ -22,7 +22,7 @@
             <tr>
                 <td>@song.SongTitle</td>
                 <td>
-                    <a asp-action="Remove" asp-route-id="@song.Id">Remove</a>
+                    <a asp-action="Remove" asp-route-songId="@song.SongId">Remove</a>
                 </td>
             </tr>
         }

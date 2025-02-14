@@ -12,8 +12,8 @@ using Songify.Data;
 namespace Songify.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250213201628_AddRoles")]
-    partial class AddRoles
+    [Migration("20250214205854_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -212,9 +212,6 @@ namespace Songify.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SongId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("UserId", "SongId");
