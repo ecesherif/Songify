@@ -9,6 +9,10 @@
     ViewData["Title"] = "All Bands";
 }
 <h1>All Bands</h1>
+<form class="d-flex" action="@Url.Action(ViewData["Action"]?.ToString(), ViewData["Controller"]?.ToString())" method="get">
+    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="searchString" />
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
     <a asp-action="Create" class="add">Add Band</a>
