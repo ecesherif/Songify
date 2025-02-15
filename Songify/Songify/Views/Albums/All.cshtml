@@ -11,39 +11,21 @@
 <h1>All Albums</h1>
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
-    <a asp-action="Create" class="btn btn-primary mb-2">Add Album</a>
+    <a asp-action="Create" class="add">Add Album</a>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Title
-            </th>
-            <th>
-                Release year
-            </th>
-            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-            {
-                <th>
-                    Action
-                </th>
-            }
-        </tr>
-    </thead>
-    <tbody>
+<div class="container">
         @foreach (var album in Model)
         {
-            <tr>
-                <td>@album.Title</td>
-                <td>@album.ReleaseYear</td>
+            <div class="card">
+                <h5>@album.Title</h5>
+                <p><strong>Release year:</strong>@album.ReleaseYear</p>
                 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@album.Id">Edit</a> |
+                    <div class="admin-actions">
+                    <a asp-action="Edit" asp-route-id="@album.Id">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@album.Id">Delete</a>
-                </td>
+                    </div>
                 }
-            </tr>
+            </div>
         }
-    </tbody>
-</table>
+</div>

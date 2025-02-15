@@ -1,30 +1,25 @@
 ﻿@using Songify.Models.LikedSongsModels
+@using Songify.Entities
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<SongifyUser> UserManager
+@inject SignInManager<SongifyUser> SignInManager
 @model IEnumerable<LikedSongsAllViewModel>
 @{
     ViewData["Title"] = "All Liked Songs";
 }
+@if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
+{
 <h1>All Liked Songs</h1>
-<a asp-action="Add" class="btn btn-primary mb-2">Add Liked Song</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Song title
-            </th>
-            <th>
-                Action
-            </th>
-        </tr>
-    </thead>
-    <tbody>
+<a asp-action="Add" class="add">Add Liked Song</a>
+<div class="container">
         @foreach (var song in Model)
         {
-            <tr>
-                <td>@song.SongTitle</td>
-                <td>
-                    <a asp-action="Remove" asp-route-songId="@song.SongId">Remove</a>
-                </td>
-            </tr>
+            <div class="card">
+                <h5>@song.SongTitle</h5>
+                <div class="admin-actions">
+                <a asp-action="Remove" asp-route-songId="@song.SongId">Remove</a>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+</div>
+}

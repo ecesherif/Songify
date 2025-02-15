@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Songify.Data;
 using Songify.Entities;
-using Songify.Models;
 using Songify.Models.BandModels;
+using Songify.Models.LikedSongsModels;
 using Songify.Models.SongModels;
 using System.Globalization;
 using System.Security.Claims;
@@ -16,41 +16,42 @@ namespace Songify.Controllers
     public class SongsController : Controller
     {
         private readonly ApplicationDbContext context;
-
+        // Constructor to initialize the database context
         public SongsController(ApplicationDbContext context)
         {
             this.context = context;
-        }
-
+        } 
+        // Action to display all songs with optional search functionality
         public IActionResult All(string searchString)
         {
-            List<SongAllViewModel> songs = context.Songs.Include(songFromDb => songFromDb.Album).Include(songFromDb => songFromDb.Band)
-                .Select(songFromDb => new SongAllViewModel
+            ViewData["Controller"] = "Songs";
+            ViewData["Action"] = "All";
+            var songs = context.Songs.Include(song => song.Album).Include(song => song.Band)
+                .Select(song => new SongAllViewModel
                 {
-                    Id = songFromDb.Id.ToString(),
-                    Title = songFromDb.Title,
-                    Duration = songFromDb.Duration.ToString(),
-                    AlbumName = songFromDb.Album.Title,
-                    BandName = songFromDb.Band.Name                
+                    Id = song.Id.ToString(),
+                    Title = song.Title,
+                    Duration = song.Duration.ToString(),
+                    AlbumName = song.Album.Title,
+                    BandName = song.Band.Name
                 })
                 .ToList();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                songs = songs.Where(s => s.Title.Contains(searchString)).ToList();
-            }
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    songs = songs.Where(s => s.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
 
-            return this.View(songs);
+            return View(songs);
         }
-        [Authorize]
+        // GET action to display the song creation form (only accessible by Admin)
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             PopulateDropdowns(); 
             return this.View();
         }
-
+        // POST action to handle the creation of a new song (only accessible by Admin)
         [HttpPost]
-        [Authorize]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(SongCreateBindingModel bindingModel)
         {
@@ -73,33 +74,7 @@ namespace Songify.Controllers
 
             return RedirectToAction("All");
         }
-        [Authorize]
-        public IActionResult My(string searchString)
-        {
-            string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = this.context.Users.SingleOrDefault(u => u.Id == currentUserId);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            List<LikedSongsListingViewModel> likedSongs = this.context.LikedSongs
-                .Where(ls => ls.UserId == user.Id)
-                .Select(ls => new LikedSongsListingViewModel
-                {
-                    UserId = ls.UserId,
-                    SongId = ls.SongId.ToString(),
-
-                })
-                .ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                likedSongs = likedSongs.Where(ls => ls.SongId.Contains(searchString)).ToList();
-            }
-
-            return View(likedSongs);
-        }
-        [Authorize]
+        // GET action to display the edit form for an existing song (only accessible by Admin)
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
@@ -121,7 +96,7 @@ namespace Songify.Controllers
             PopulateDropdowns(song.AlbumId, song.BandId);
             return View(model);
         }
-        [Authorize]
+        // POST action to handle the editing of an existing song (only accessible by Admin)
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(SongEditBindingModel model)
@@ -148,12 +123,13 @@ namespace Songify.Controllers
 
             return RedirectToAction("All");
         }
+        // Helper method to populate the dropdown lists for albums and bands
         private void PopulateDropdowns(int? selectedAlbumId = null, int? selectedBandId = null)
         {
             ViewBag.Albums = new SelectList(context.Albums?.ToList() ?? new List<Album>(), "Id", "Title", selectedAlbumId);
             ViewBag.Bands = new SelectList(context.Bands?.ToList() ?? new List<Band>(), "Id", "Name", selectedBandId);
         }
-        [Authorize]
+        // GET action to display the song deletion confirmation (only accessible by Admin)
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
@@ -174,7 +150,7 @@ namespace Songify.Controllers
 
             return View(model);
         }
-        [Authorize]
+        // POST action to handle the actual deletion of a song (only accessible by Admin)
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
@@ -190,6 +166,7 @@ namespace Songify.Controllers
 
             return RedirectToAction("All");
         }
+        // Default index action that returns the index view (landing page for songs)
         public IActionResult Index()
         {
             return View();

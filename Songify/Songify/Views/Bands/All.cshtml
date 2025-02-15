@@ -11,43 +11,22 @@
 <h1>All Bands</h1>
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
-    <a asp-action="Create" class="btn btn-primary mb-2">Add Band</a>
+    <a asp-action="Create" class="add">Add Band</a>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Year formed
-            </th>
-            <th>
-                Country
-            </th>
-            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-            {
-                <th>
-                    Action
-                </th>
-            }
-        </tr>
-    </thead>
-    <tbody>
+<div class="container">
         @foreach (var band in Model)
         {
-            <tr>
-                <td>@band.Name</td>
-                <td>@band.FormYear</td>
-                <td>@band.Country</td>
+            <div class="card">
+                <h5>@band.Name</h5>
+                <p><strong>Form year:</strong>@band.FormYear</p>
+                <p><strong>Country:</strong>@band.Country</p>
                 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@band.Id">Edit</a> |
+                    <div class="admin-actions">
+                    <a asp-action="Edit" asp-route-id="@band.Id">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@band.Id">Delete</a>
-                </td>
+                    </div>
                 }
-            </tr>
+            </div>
         }
-    </tbody>
-</table>
+</div>

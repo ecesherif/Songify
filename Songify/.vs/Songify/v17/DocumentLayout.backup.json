@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|c:\\users\\ece\\desktop\\\u0438\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u043C\u043E\u0434\u0443\u043B 12\\songify\\songify\\views\\likedsongs\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|solutionrelative:songify\\views\\likedsongs\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|c:\\users\\ece\\desktop\\\u0438\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u043C\u043E\u0434\u0443\u043B 12\\songify\\songify\\controllers\\likedsongscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|solutionrelative:songify\\controllers\\likedsongscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|c:\\users\\ece\\desktop\\\u0438\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u043C\u043E\u0434\u0443\u043B 12\\songify\\songify\\views\\likedsongs\\remove.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|solutionrelative:songify\\views\\likedsongs\\remove.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|c:\\users\\ece\\desktop\\\u0438\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u043C\u043E\u0434\u0443\u043B 12\\songify\\songify\\views\\likedsongs\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|solutionrelative:songify\\views\\likedsongs\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|c:\\users\\ece\\desktop\\\u0438\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u043C\u043E\u0434\u0443\u043B 12\\songify\\songify\\models\\likedsongsmodels\\likedsongremoveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|solutionrelative:songify\\models\\likedsongsmodels\\likedsongremoveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|c:\\users\\ece\\desktop\\\u0438\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u043C\u043E\u0434\u0443\u043B 12\\songify\\songify\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A659CC7-B77D-4071-A679-E74A0E7FCD87}|Songify\\Songify.csproj|solutionrelative:songify\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,66 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Add.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Views\\LikedSongs\\Add.cshtml",
-              "RelativeDocumentMoniker": "Songify\\Views\\LikedSongs\\Add.cshtml",
-              "ToolTip": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Views\\LikedSongs\\Add.cshtml",
-              "RelativeToolTip": "Songify\\Views\\LikedSongs\\Add.cshtml",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA0AAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-14T21:33:24.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "All.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Views\\LikedSongs\\All.cshtml",
-              "RelativeDocumentMoniker": "Songify\\Views\\LikedSongs\\All.cshtml",
-              "ToolTip": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Views\\LikedSongs\\All.cshtml",
-              "RelativeToolTip": "Songify\\Views\\LikedSongs\\All.cshtml",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAkwBgAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-14T21:20:27.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LikedSongsController.cs",
-              "DocumentMoniker": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Controllers\\LikedSongsController.cs",
-              "RelativeDocumentMoniker": "Songify\\Controllers\\LikedSongsController.cs",
-              "ToolTip": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Controllers\\LikedSongsController.cs",
-              "RelativeToolTip": "Songify\\Controllers\\LikedSongsController.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAjwDwAAAA1AAAAAAAAAA==",
+              "Title": "SongsController.cs",
+              "DocumentMoniker": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Controllers\\SongsController.cs",
+              "RelativeDocumentMoniker": "Songify\\Controllers\\SongsController.cs",
+              "ToolTip": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Controllers\\SongsController.cs",
+              "RelativeToolTip": "Songify\\Controllers\\SongsController.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAADwv8UAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T21:15:35.17Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LikedSongRemoveViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Models\\LikedSongsModels\\LikedSongRemoveViewModel.cs",
-              "RelativeDocumentMoniker": "Songify\\Models\\LikedSongsModels\\LikedSongRemoveViewModel.cs",
-              "ToolTip": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Models\\LikedSongsModels\\LikedSongRemoveViewModel.cs",
-              "RelativeToolTip": "Songify\\Models\\LikedSongsModels\\LikedSongRemoveViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T20:46:09.489Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Remove.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Views\\LikedSongs\\Remove.cshtml",
-              "RelativeDocumentMoniker": "Songify\\Views\\LikedSongs\\Remove.cshtml",
-              "ToolTip": "C:\\Users\\Ece\\Desktop\\\u0418\u0442 \u043A\u0430\u0440\u0438\u0435\u0440\u0430\\\u041C\u043E\u0434\u0443\u043B 12\\Songify\\Songify\\Views\\LikedSongs\\Remove.cshtml",
-              "RelativeToolTip": "Songify\\Views\\LikedSongs\\Remove.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-14T20:46:02.326Z",
+              "WhenOpened": "2025-02-15T16:12:01.907Z",
               "EditorCaption": ""
             }
           ]

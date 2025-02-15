@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2QG9KS6zjTIGwyz5xaowu4Up/ryJPpv5WjgXd6uvZrY=",
+  "Hash": "qv0+9ctvOqsX0UFKOf1UxKtlvnxvpX4u+O45rfyIiEc=",
   "Source": "Songify",
   "BasePath": "_content/Songify",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "9dtpzb5m07",
+      "Integrity": "7T/55iFxW6lgMnHUDclg2aHYcsGk6SrGp7gsGWxmkUk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1359,6 +1359,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Ece\\Desktop\\Ит кариера\\Модул 12\\Songify\\Songify\\wwwroot\\images\\logo.png",
+      "SourceId": "Songify",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ece\\Desktop\\Ит кариера\\Модул 12\\Songify\\Songify\\wwwroot\\",
+      "BasePath": "_content/Songify",
+      "RelativePath": "images/logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "40otm8x19t",
+      "Integrity": "xGRq43ExIr003/pWEVbwe1vjYcslylli3IRpyI3EfJo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
       "Identity": "C:\\Users\\Ece\\Desktop\\Ит кариера\\Модул 12\\Songify\\Songify\\wwwroot\\js\\site.js",
@@ -2581,7 +2602,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.c2tiyv64ts.css",
+      "Route": "css/site.9dtpzb5m07.css",
       "AssetFile": "C:\\Users\\Ece\\Desktop\\Ит кариера\\Модул 12\\Songify\\Songify\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2591,7 +2612,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "1429"
         },
         {
           "Name": "Content-Type",
@@ -2599,11 +2620,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"7T/55iFxW6lgMnHUDclg2aHYcsGk6SrGp7gsGWxmkUk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 08 Feb 2025 12:44:08 GMT"
+          "Value": "Sat, 15 Feb 2025 13:19:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2613,7 +2634,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
+          "Value": "9dtpzb5m07"
         },
         {
           "Name": "label",
@@ -2621,7 +2642,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-7T/55iFxW6lgMnHUDclg2aHYcsGk6SrGp7gsGWxmkUk="
         }
       ]
     },
@@ -2636,7 +2657,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "1429"
         },
         {
           "Name": "Content-Type",
@@ -2644,11 +2665,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"7T/55iFxW6lgMnHUDclg2aHYcsGk6SrGp7gsGWxmkUk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 08 Feb 2025 12:44:08 GMT"
+          "Value": "Sat, 15 Feb 2025 13:19:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2658,7 +2679,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-7T/55iFxW6lgMnHUDclg2aHYcsGk6SrGp7gsGWxmkUk="
         }
       ]
     },
@@ -4961,6 +4982,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.40otm8x19t.png",
+      "AssetFile": "C:\\Users\\Ece\\Desktop\\Ит кариера\\Модул 12\\Songify\\Songify\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "41145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xGRq43ExIr003/pWEVbwe1vjYcslylli3IRpyI3EfJo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 13:04:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "40otm8x19t"
+        },
+        {
+          "Name": "label",
+          "Value": "images/logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xGRq43ExIr003/pWEVbwe1vjYcslylli3IRpyI3EfJo="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.png",
+      "AssetFile": "C:\\Users\\Ece\\Desktop\\Ит кариера\\Модул 12\\Songify\\Songify\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "41145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xGRq43ExIr003/pWEVbwe1vjYcslylli3IRpyI3EfJo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Feb 2025 13:04:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xGRq43ExIr003/pWEVbwe1vjYcslylli3IRpyI3EfJo="
         }
       ]
     },
@@ -9743,7 +9846,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Feb 2025 08:05:09 GMT"
+          "Value": "Sat, 15 Feb 2025 14:57:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9788,7 +9891,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Feb 2025 08:05:09 GMT"
+          "Value": "Sat, 15 Feb 2025 14:57:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9833,7 +9936,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Feb 2025 08:05:09 GMT"
+          "Value": "Sat, 15 Feb 2025 14:57:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9870,7 +9973,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Feb 2025 08:05:09 GMT"
+          "Value": "Sat, 15 Feb 2025 14:57:13 GMT"
         },
         {
           "Name": "Cache-Control",

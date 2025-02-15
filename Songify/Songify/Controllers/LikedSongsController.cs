@@ -15,11 +15,13 @@ namespace Songify.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly UserManager<SongifyUser> userManager;
+        // Constructor to initialize context and userManager
         public LikedSongsController(ApplicationDbContext context, UserManager<SongifyUser> userManager)
         {
             this.context = context;
             this.userManager = userManager;
         }
+        // Action to display all liked songs of the logged-in user
         public ActionResult Index()
         {
             var userId = userManager.GetUserId(User);
@@ -31,7 +33,8 @@ namespace Songify.Controllers
 
             return View(likedSongs);
         }
-        public IActionResult All(string searchString)
+        // Action to display all liked songs in a simplified format
+        public IActionResult All()
         {
             var userId = userManager.GetUserId(User);
             List<LikedSongsAllViewModel> likedSongs = context.LikedSongs
@@ -42,18 +45,15 @@ namespace Songify.Controllers
                     SongTitle = lsFromDb.Song.Title
                 })
                 .ToList();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                likedSongs = likedSongs.Where(s => s.SongTitle.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-            }
             return View(likedSongs);
         }
+        // Action to display a form for adding a song to liked songs
         public ActionResult Add()
         {
             ViewBag.SongId = new SelectList(context.Songs, "Id", "Title");
             return View();
         }
-
+        // POST action to handle the form submission for adding a song to liked songs
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(LikedSongAddBindingModel model)
@@ -79,6 +79,7 @@ namespace Songify.Controllers
             ViewBag.SongId = new SelectList(context.Songs, "Id", "Title", model.SongId);
             return View(model);
         }
+        // Action to display a confirmation view for removing a song from liked songs
         [Authorize]
         public IActionResult Remove(int songId)
         {
@@ -95,6 +96,7 @@ namespace Songify.Controllers
             };
             return View(model);
         }
+        // POST action to handle the actual removal of a liked song
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -10,14 +10,16 @@ namespace Songify.Controllers
     public class AlbumsController : Controller
     {
         private readonly ApplicationDbContext context;
-
+        // Constructor to initialize the database context
         public AlbumsController(ApplicationDbContext context)
         {
             this.context = context;
         }
-
+        // Action to display all albums with optional search functionality
         public IActionResult All(string searchString)
         {
+            ViewData["Controller"] = "Albums";
+            ViewData["Action"] = "All";
             List<AlbumAllViewModel> albums = context.Albums
                 .Select(albumFromDb => new AlbumAllViewModel
                 {
@@ -26,19 +28,20 @@ namespace Songify.Controllers
                     ReleaseYear = albumFromDb.ReleaseYear.ToString()
                 })
                 .ToList();
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                albums = albums.Where(s => s.Title.Contains(searchString)).ToList();
+                albums = albums.Where(a => a.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
             return this.View(albums);
         }
+        // Action to display the album creation form (only accessible by Admin)
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return this.View();
         }
-
+        // POST action to handle the creation of a new album (only accessible by Admin)
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(AlbumCreateBindingModel bindingModel)
@@ -60,7 +63,7 @@ namespace Songify.Controllers
 
             return this.View();
         }
-        [Authorize]
+        // Action to display the edit form for an existing album (only accessible by Admin)
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
@@ -79,7 +82,7 @@ namespace Songify.Controllers
 
             return View(model);
         }
-        [Authorize]
+        // POST action to handle the editing of an album (only accessible by Admin)
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(AlbumEditBindingModel model)
@@ -98,7 +101,7 @@ namespace Songify.Controllers
 
             return RedirectToAction("All");
         }
-        [Authorize]
+        // Action to display the deletion confirmation for an album (only accessible by Admin)
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
@@ -117,7 +120,7 @@ namespace Songify.Controllers
 
             return View(model);
         }
-        [Authorize]
+        // POST action to handle the actual deletion of an album (only accessible by Admin)
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
@@ -133,6 +136,7 @@ namespace Songify.Controllers
 
             return RedirectToAction("All");
         }
+        // Action to return the index view (default page for the Albums controller)
         public IActionResult Index()
         {
             return View();

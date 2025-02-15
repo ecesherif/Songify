@@ -7,7 +7,26 @@ html {
     font-size: 16px;
   }
 }
-
+.navbar {
+    background-color: white !important;
+}
+.navbar .navbar-brand, .navbar .nav-link {
+    color: #091B40 !important;
+}
+.navbar .nav-link:hover {
+    color: #F227AB !important;
+}
+.navbar-logo {
+    height: 40px; 
+    margin-right: 10px; 
+    max-height: 100%;
+}
+body {
+    font-family:'Courier New';
+    background-color: #091B40;
+    color: white;
+    margin-bottom: 60px;
+}
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -19,4 +38,36 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    justify-content: center;
+}
+.btn {
+    background-color: #4703A6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #F227AB;
+}
+.card {
+    background: #591D73;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.admin-actions {
+    margin-top: 10px;
+}
+.admin-actions a, .add, .action {
+    color: white !important;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
