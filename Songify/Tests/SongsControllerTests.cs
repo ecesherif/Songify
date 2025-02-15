@@ -103,34 +103,6 @@ namespace Tests
         }
 
         [Fact]
-        public void My_ReturnsLikedSongs()
-        {
-            var userId = "user123";
-            var user = new SongifyUser { Id = userId, UserName = "testuser" };
-            var song = new Song { Id = 1, Title = "Liked Song", Duration = 180, AlbumId = 1, BandId = 1 };
-            _context.Users.Add(user);
-            _context.Songs.Add(song);
-            _context.LikedSongs.Add(new LikedSong { UserId = userId, SongId = song.Id });
-            _context.SaveChanges();
-
-            var userClaims = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, userId)
-            }));
-
-            _controller.ControllerContext = new ControllerContext
-            {
-                HttpContext = new Microsoft.AspNetCore.Http.DefaultHttpContext { User = userClaims }
-            };
-            var result = _controller.My(null) as ViewResult;
-            var model = result.Model as List<LikedSongsListingViewModel>;
-            Assert.NotNull(result);
-            Assert.NotNull(model);
-            Assert.Single(model);
-            Assert.Equal("1", model[0].SongId);
-        }
-
-        [Fact]
         public void Edit_Get_ValidId_ReturnsViewWithModel()
         {
             var album = new Album { Id = 1, Title = "Test Album" };

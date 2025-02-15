@@ -34,7 +34,7 @@ namespace Songify.Controllers
             return View(likedSongs);
         }
         // Action to display all liked songs in a simplified format
-        public IActionResult All()
+        public IActionResult All(string v)
         {
             var userId = userManager.GetUserId(User);
             List<LikedSongsAllViewModel> likedSongs = context.LikedSongs

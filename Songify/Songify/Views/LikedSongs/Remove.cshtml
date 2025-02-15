@@ -11,4 +11,5 @@
     @Html.AntiForgeryToken()
     <input type="hidden" name="songId" value="@Model.SongId" />
     <button type="submit" class="btn btn-danger">Remove</button>
+    <a asp-action="All" class="btn btn-secondary">Cancel</a>
 </form>
